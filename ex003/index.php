@@ -17,8 +17,27 @@
     // $num = (float) "450";
     // var_dump($num);
 
-    $casado = false;
-    var_dump($casado);
+    // $casado = false;
+    // var_dump($casado);
+
+    // echo "PHP\u{1f418}";
+        // echo 'PHP\u{1f418}';
+
+        // $nome = "Willton";
+        // $apelido = "Da Costa";
+        // $sobrenome = "Xavier";
+        
+        // echo "$nome \n\t \"$apelido\" \t\t$sobrenome";
+
+    $canal = "Curso em Video";
+    $ano = date("Y");
+    echo <<< Frase
+        Ola galera do $canal!
+                Tudo bem com voces?
+            Como esta sendo esse ano de $ano?
+        Abracos \u{1F596}
+        
+        Frase;
     
 
     ?>

@@ -7,19 +7,20 @@
     <title>Resultado</title>
 </head>
 <body>
-    <h1>Resultado</h1>
     <main>
-        <?php 
-        
-            $valor = $_GET["num"];
-            $process = $valor +1;
-            $antece = $valor -1;
-
-            echo "<p>O numero digitado: <strong>$valor</strong></p>";
-            echo "<p>O seu sucessor e: <strong>$process</strong></p>";
-            echo "<p>O seu antecessor e: <strong>$antece</strong></p>";
-
-        ?>
+        <h1>Resultado</h1>
+        <p>
+            <?php
+            
+                $valor = $_GET["num"] ?? 0;
+                $process = $valor +1;
+                $antece = $valor -1;
+                echo "O numero digitado: <strong>$valor</strong>";
+                echo "<br>O seu sucessor e: <em>$process</em>";
+                echo "<br>O seu antecessor e: <em>$antece</em>";
+            ?>
+        </p>
+        <button onclick="javascript:history.go(-1)">&#x2b05; Voltar</button>
     </main>
 </body>
 </html>

@@ -8,16 +8,17 @@
 </head>
 <body>
 
-    <header>
-        <h1>Sorteador de Numero</h1>
-    </header>
-    <section>
-        <p>Sortei um numero entre 0 a 100</p>
+    <main>
+        <h1>Trabalhando com numeros aleatorios:</h1>
         <?php 
-            $v=rand(0,100);
-            echo "<p>O valor sorteado e <strong>$v</strong></p>";
+            $min = 0;
+            $max = 100;
+            $num = mt_rand($min, $max);
+
+            echo "<p>Gerando um numero aleatorio entre $min e $max<br>O valor aleatorio gerado foi <strong>$num</strong></p>";
         ?>
-        <input type="submit" value="Randomizar">
-    </section>
+
+        <button onclick="javascript:window.location.reload()">&#x1f504; Gerar outro</button>
+    </main>
 </body>
 </html>

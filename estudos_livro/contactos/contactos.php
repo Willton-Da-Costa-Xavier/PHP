@@ -26,24 +26,21 @@ session_start();
     </form>
 
     <?php 
+
+        if (!isset($_SESSION["lista_contactos"])) {
+            $_SESSION["lista_contactos"] = array();
+        }
     
-        if(isset($_GET["nome"])){
-            $_SESSION["lista_contactos"][]=$_GET["nome"];
+        if(isset($_GET["nome"]) && isset($_GET["telefone"]) && isset($_GET["mail"])){
+            $novo_contato = array(
+                "nome" => $_GET["nome"],
+                "telefone" => $_GET["telefone"],
+                "mail" => $_GET["mail"]
+            );
+            $_SESSION["lista_contactos"][] =$novo_contato;
         }
-
-        if(isset($_GET["telefone"])){
-            $_SESSION["lista_contactos"][]=$_GET["telefone"];
-        }
-
-        if(isset($_GET["mail"])){
-            $_SESSION["lista_contactos"][]=$_GET["mail"];
-        }
-
-        $lista_contactos = array();
-
-        if(isset($_SESSION["lista_contactos"])){
-            $lista_contactos = $_SESSION["lista_contactos"];
-        }
+        
+        $lista_contactos = $_SESSION["lista_contactos"];
     
     ?>
 
@@ -53,42 +50,49 @@ session_start();
             <th>Telefone</th>
             <th>E-mail</th>
             <?php 
-            
-                for ($i=0;$i<count($lista_contactos);$i++) {
-                    
-                    
-            
-            ?>
+            // Verifique se $lista_contactos é um array antes de iterar
+            if (is_array($lista_contactos)) {
+                foreach($lista_contactos as $contato) {
+                    // Verifique se $contato é um array associativo
+                    if (is_array($contato)) {
+        ?>
         </tr>
 
         <tr>
             <td>
                 <?php 
 
-                    if($i=0){
-                        echo $lista_contactos[$i];
-                    }
+                   
+                    echo htmlspecialchars($contato["nome"]);
                     
                 ?>
             </td>
             <td>
                 <?php 
                    
-                   if($i=1){
-                    echo $lista_contactos[$i];
-                }
+                   
+                    echo htmlspecialchars($contato["telefone"]);
+                
                 ?>
             </td>
 
             <td>
                 <?php 
                 
-                    echo $lista_contactos[$i];
+                    echo htmlspecialchars($contato["mail"]);
 
                 ?>
             </td>
         </tr>
-        <?php }?>
+        <?php 
+                    } else {
+                        echo "<tr><td colspan='3'>Dados inválidos</td></tr>";
+                    }
+                }
+            } else {
+                echo "<tr><td colspan='3'>Nenhum contato encontrado</td></tr>";
+            }
+        ?>
     </table>
 </body>
 </html>

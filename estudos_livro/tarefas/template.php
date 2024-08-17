@@ -18,7 +18,7 @@
             <input type="text" name="prz" id="idpraz">
             <fieldset>
                 <legend>Prioridade:</legend>
-                <label for=""><input type="radio" name="prioridade" id="" value="baixa" checked>Baixa <input type="radio" name="prioridade" id="" value="media">Media <input type="radio" name="propriedade" id="" value="alta">Alta</label>
+                <label for=""><input type="radio" name="prioridade" id="" value="baixa" checked>Baixa <input type="radio" name="prioridade" id="" value="media">Media <input type="radio" name="prioridade" id="" value="alta">Alta</label>
             </fieldset>
             <label for="">Tarefa concluida: <input type="checkbox" name="concluida" id="" value="sim"></label>
             <input type="submit" value="Cadastrar">
@@ -28,22 +28,63 @@
     <table>
         <tr>
             <th>Tarefas</th>
-            <?php 
-            
-                foreach ($lista_tarefas as $tarefa):
-            
-            ?>
-            <tr>
-                <td><?php 
-                
-                    echo $tarefa;
-                    
-                ?></td>
-                <tr>
-                    <?php endforeach;?>
-                </tr>
-            </tr>
+            <th>Descricao</th>
+            <th>Prazo</th>
+            <th>Prioridade</th>
+            <th>Concluida</th>
         </tr>
+        
+        <?php 
+            
+            foreach ($lista_tarefas as $tarefa):
+        
+        ?>
+
+        <tr>
+            <td><?php 
+                
+                echo $tarefa["nome"];
+                    
+                ?>
+            </td>
+
+            <td>
+                <?php 
+                        
+                    echo $tarefa["descricao"];
+                    
+                ?>
+            </td>
+
+            <td>
+
+                <?php 
+
+                    echo $tarefa["prazo"];
+                
+                ?>
+            </td>
+
+            <td>
+                <?php 
+                    
+                    echo $tarefa["prioridade"];
+                    
+                ?>
+            </td>
+
+            <td>
+                <?php 
+                    
+                    echo $tarefa["concluida"];
+                    
+                ?>
+            </td>
+
+
+        </tr>    
+        <?php endforeach;?>
+        
     </table>
 </body>
 </html>

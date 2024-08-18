@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -18,9 +19,9 @@
             <input type="text" name="prz" id="idpraz">
             <fieldset>
                 <legend>Prioridade:</legend>
-                <label for=""><input type="radio" name="prioridade" id="" value="baixa" checked>Baixa <input type="radio" name="prioridade" id="" value="media">Media <input type="radio" name="prioridade" id="" value="alta">Alta</label>
+                <label for=""><input type="radio" name="prioridade" id="" value="1" checked>Baixa <input type="radio" name="prioridade" id="" value="2">Media <input type="radio" name="prioridade" id="" value="3">Alta</label>
             </fieldset>
-            <label for="">Tarefa concluida: <input type="checkbox" name="concluida" id="" value="sim"></label>
+            <label for="">Tarefa concluida: <input type="checkbox" name="concluida" id="" value="1"></label>
             <input type="submit" value="Cadastrar">
         </fieldset>
     </form>
@@ -60,7 +61,7 @@
 
                 <?php 
 
-                    echo $tarefa["prazo"];
+                    echo traduz_data_para_exibir($tarefa['prazo']);
                 
                 ?>
             </td>
@@ -68,7 +69,7 @@
             <td>
                 <?php 
                     
-                    echo $tarefa["prioridade"];
+                    echo traduz_prioridade($tarefa['prioridade']);
                     
                 ?>
             </td>
@@ -76,7 +77,7 @@
             <td>
                 <?php 
                     
-                    echo $tarefa["concluida"];
+                    echo traduz_concluida($tarefa["concluida"]);
                     
                 ?>
             </td>

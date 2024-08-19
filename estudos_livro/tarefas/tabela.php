@@ -69,6 +69,10 @@
 
             </td>
 
+            <td>
+                <a href="remover.php?id=<?= $tarefa["id"]?>">Apagar</a>
+            </td>
+
 
         </tr>    
         <?php endforeach;?>

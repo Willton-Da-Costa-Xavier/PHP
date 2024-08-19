@@ -29,6 +29,8 @@
         }
 
         gravar_tarefa($conexao, $tarefa);
+        header("Location: tarefas.php");
+        die();
     }
 
     $lista_tarefas = buscar_tarefas($conexao);

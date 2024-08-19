@@ -5,37 +5,53 @@
     include "ajudantes.php";
     $exibir_tabela = true;
 
-    if(isset($_GET["nome"]) && $_GET["nome"]!=""){
-        $tarefa = array();
-        $tarefa["nome"] = $_GET["nome"];
-        if(isset($_GET["desc"])){
-            $tarefa["descricao"]=$_GET["desc"];
+    if(tem_post()){
+        if(isset($_POST["nome"]) && strlen($_POST["nome"])>0){
+            $tarefa["nome"] = $_POST["nome"];
+        }else{
+            $tem_erros= true;
+            $erros_validacao["nome"] = "O nome da tarefa e obrigatorio!";
+        }
+
+        if(isset($_POST["desc"])){
+            $tarefa["descricao"]=$_POST["desc"];
         }else{
             $tarefa["descricao"]="";
         }
 
-        if(isset($_GET["prz"])){
-            $tarefa["prazo"] = traduz_data_banco($_GET["prz"]);
+        if(isset($_POST["prz"]) && strlen($_POST["prz"])>0){
+            if(validar_data($_POST["prz"])){
+                $tarefa["prazo"] = traduz_data_banco($_POST["prz"]);
+            }else{
+                $tem_erros= true;
+                $erros_validacao["prazo"] = "O prazo nao e uma data valida!";
+            }
+           
         }else{
             $tarefa["prazo"] = "";
         }
 
-        $tarefa["prioridade"]=$_GET["prioridade"];
+        $tarefa["prioridade"]=$_POST["prioridade"];
 
-        if(isset($_GET["concluida"])){
+        if(isset($_POST["concluida"])){
             $tarefa["concluida"] = 1;
         }else{
             $tarefa["concluida"] = 0;
         }
 
-        gravar_tarefa($conexao, $tarefa);
-        header("Location: tarefas.php");
-        die();
+        if(!$tem_erros){
+
+            gravar_tarefa($conexao, $tarefa);
+            header("Location: tarefas.php");
+            die();
+        }
+
+       
     }
 
     $lista_tarefas = buscar_tarefas($conexao);
 
-    $tarefa = array("id" => 0, "nome" =>"", "descricao" => "", "prazo" => "", "prioridade" =>1, "concluida" => "");
+    $tarefa = array("id" => 0, "nome" =>isset($_POST["nome"])?$_POST["nome"]:"", "descricao" => isset($_POST["desc"])?$_POST["desc"]:"", "prazo" => isset($_POST["prz"])?traduz_data_banco($_POST["prz"]):"", "prioridade" =>isset($_POST["prioridade"])?$_POST["prioridade"]:"", "concluida" => isset($_POST["concluida"])?$_POST["concluida"]:"");
 
     include "template.php";
 

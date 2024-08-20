@@ -23,11 +23,14 @@
         ?>
 
         <tr>
-            <td><?php 
+            <td>
+                
+                <a href="tarefa.php?id=<?= $tarefa['id'];?>"><?php 
                 
                 echo $tarefa["nome"];
                     
-                ?>
+                ?></a>
+                
             </td>
 
             <td>

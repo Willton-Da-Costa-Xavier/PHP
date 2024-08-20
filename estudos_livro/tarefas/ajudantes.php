@@ -89,4 +89,18 @@
         return $resultado;
     }
 
+    function tratar_anexo($anexo){
+        $padrao = '/^.+(\.pdf|\.zip)$/';
+        $resultado = preg_match($padrao,$anexo["name"]);
+
+        if(!$resultado){
+            return false;
+        }
+
+        move_uploaded_file($anexo["tmp_name"],"anexos/{$anexo['name']}");
+
+        return true;
+        
+    }
+
 ?>

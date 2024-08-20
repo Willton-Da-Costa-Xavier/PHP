@@ -127,7 +127,7 @@
         $email->SMTPSecure = "tls";
         $email->SMTPAuth = true;
         $email->Username = "minhacontateste71@gmail.com";
-        $email->Password = "minhasenha2";
+        $email->Password = "uxmacsimjnicvvzt";
         $email->setFrom("minhacontateste71@gmail.com","Avisador de Tarefas");
 
         //Digitar o e-mail do destinatario

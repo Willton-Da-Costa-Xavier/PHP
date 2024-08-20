@@ -1,7 +1,8 @@
 <?php 
-
+    include "config.php";
     include "banco.php";
     include "ajudantes.php";
+    
     $tem_erros = false;
     $erros_validacao = array();
 

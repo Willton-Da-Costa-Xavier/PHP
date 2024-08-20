@@ -21,6 +21,7 @@
                 <label for=""><input type="radio" name="prioridade" id="" value="1" <?php echo($tarefa["prioridade"]==1)?"checked":"";?>>Baixa <input type="radio" name="prioridade" id="" value="2" <?php echo($tarefa["prioridade"]==2)? "checked":"";?>>Media <input type="radio" name="prioridade" id="" value="3" <?php echo($tarefa["prioridade"] ==3)?"checked":"";?>>Alta</label>
             </fieldset>
             <label for="">Tarefa concluida: <input type="checkbox" name="concluida" id="" value="1" <?php echo($tarefa["concluida"]==1)?"checked":"";?></label>
+            <label>Lembrete por e-mail: <input type="checkbox" name="lembrete" value="1"></label>
             <input type="hidden" name="id" value="<?php echo $tarefa['id'];?>">
             <input type="submit" value="<?php echo($tarefa["id"]>0)?"Atualizar":"Cadastrar";?>">
         </fieldset>

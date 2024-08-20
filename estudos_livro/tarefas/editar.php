@@ -1,8 +1,10 @@
 <?php 
 
     session_start();
+    include "config.php";
     include "banco.php";
     include "ajudantes.php";
+    
     $exibir_tabela = false;
     $tem_erros=false;
     $erros_validacao = array();
@@ -48,7 +50,13 @@
 
         if(!$tem_erros){
             editar_tarefa($conexao, $tarefa);
-            header("Location:tarefas.php");
+           
+
+            if(isset($_POST["lembrete"]) && $_POST["lembrete"] == "1"){
+                $anexos = buscar_anexos($conexao,$tarefa["id"]);
+                enviar_email($tarefa, $anexos);
+            }
+            header("Location: tarefas.php");
             die();
         }
        

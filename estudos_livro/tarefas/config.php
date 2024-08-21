@@ -7,6 +7,6 @@
     define("BD_BANCO","tarefas");
 
     //E-mail do destinatario para notificacao
-    define("EMAIL_NOTIFICACAO","willtondacosta@gmail.com");
+    define("EMAIL_NOTIFICACAO","teste@gmail.com");
 
 ?>

@@ -2,6 +2,9 @@
     include "config.php";
     include "banco.php";
     include "ajudantes.php";
+    include "classes/Tarefas.php";
+
+    $tarefas = new Tarefas($mysqli);
     
     $tem_erros = false;
     $erros_validacao = array();
@@ -32,13 +35,13 @@
         }
 
         if(!$tem_erros){
-            gravar_anexo($conexao, $anexo);
+            $tarefas->gravar_anexo($mysqli, $anexo);
         }
     }
 
-    $tarefa = buscar_tarefa($conexao,$_GET["id"]);
+    $tarefa = $tarefas->buscar_tarefa($_GET["id"]);
 
-    $anexos = buscar_anexos($conexao, $_GET["id"]);
+    $anexos = $tarefas->buscar_anexos($mysqli, $_GET["id"]);
 
     include "template_tarefas.php";
 

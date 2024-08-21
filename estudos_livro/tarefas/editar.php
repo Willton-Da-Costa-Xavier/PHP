@@ -4,6 +4,9 @@
     include "config.php";
     include "banco.php";
     include "ajudantes.php";
+    include "classes/Tarefas.php";
+
+    $tarefas = new Tarefas($mysqli);
     
     $exibir_tabela = false;
     $tem_erros=false;
@@ -49,11 +52,11 @@
         }
 
         if(!$tem_erros){
-            editar_tarefa($conexao, $tarefa);
+            $tarefas->editar_tarefa($tarefa);
            
 
             if(isset($_POST["lembrete"]) && $_POST["lembrete"] == "1"){
-                $anexos = buscar_anexos($conexao,$tarefa["id"]);
+                $anexos = $tarefas->buscar_anexos($mysqli,$tarefa["id"]);
                 enviar_email($tarefa, $anexos);
             }
             header("Location: tarefas.php");
@@ -63,7 +66,8 @@
        
     }
 
-    $tarefa = buscar_tarefa($conexao, $_GET["id"]);
+    $tarefas->buscar_tarefa($_GET["id"]);
+    $tarefa= $tarefas->tarefa;
     $tarefa['nome'] = (isset($_POST['nome'])) ? $_POST['nome'] :
     $tarefa['nome'];  
     $tarefa['descricao'] = (isset($_POST['descricao'])) ?

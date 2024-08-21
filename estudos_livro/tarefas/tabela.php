@@ -18,7 +18,7 @@
         
         <?php 
             
-            foreach ($lista_tarefas as $tarefa):
+            foreach ($tarefas->tarefas as $tarefa):
         
         ?>
 

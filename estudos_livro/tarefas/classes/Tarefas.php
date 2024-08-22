@@ -27,7 +27,10 @@
         }
         
         public function gravar_tarefa($tarefa){
-            $sqlGravar = "INSERT INTO tarefa (nome, descricao, prioridade, prazo, concluida) VALUES ('{$tarefa['nome']}','{$tarefa['descricao']}', '{$tarefa['prioridade']}', '{$tarefa['prazo']}', {$tarefa['concluida']})";
+            $nome = $this->mysqli->escape_string($tarefa["nome"]);
+            $descricao = $this->mysqli->escape_string($tarefa["descricao"]);
+            $prazo = $this->mysqli->escape_string($tarefa["prazo"]);
+            $sqlGravar = "INSERT INTO tarefa (nome, descricao, prioridade, prazo, concluida) VALUES ('{$nome}','{$descricao}', '{$tarefa['prioridade']}', '{$prazo}', {$tarefa['concluida']})";
             $this->mysqli->query($sqlGravar);
         }
 
